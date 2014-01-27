@@ -14,13 +14,20 @@
 		8982CB1518969CDD00D059B5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8982CB1418969CDD00D059B5 /* main.m */; };
 		8982CB1918969CDD00D059B5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8982CB1818969CDD00D059B5 /* AppDelegate.m */; };
 		8982CB1C18969CDD00D059B5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8982CB1A18969CDD00D059B5 /* Main.storyboard */; };
-		8982CB1F18969CDD00D059B5 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8982CB1E18969CDD00D059B5 /* ViewController.m */; };
 		8982CB2118969CDD00D059B5 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8982CB2018969CDD00D059B5 /* Images.xcassets */; };
 		8982CB2818969CDD00D059B5 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8982CB2718969CDD00D059B5 /* XCTest.framework */; };
 		8982CB2918969CDD00D059B5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8982CB0818969CDD00D059B5 /* Foundation.framework */; };
 		8982CB2A18969CDD00D059B5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8982CB0C18969CDD00D059B5 /* UIKit.framework */; };
 		8982CB3218969CDD00D059B5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8982CB3018969CDD00D059B5 /* InfoPlist.strings */; };
 		8982CB3418969CDD00D059B5 /* WhichTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8982CB3318969CDD00D059B5 /* WhichTests.m */; };
+		8982CB4118969DA200D059B5 /* Raleway-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8982CB4018969DA200D059B5 /* Raleway-Regular.ttf */; };
+		89C2B3761896A2E400B51FCB /* GameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89C2B3751896A2E400B51FCB /* GameViewController.m */; };
+		89C2B3791896A32500B51FCB /* GameTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89C2B3781896A32500B51FCB /* GameTableViewController.m */; };
+		89C2B37C1896A35500B51FCB /* navItem.png in Resources */ = {isa = PBXBuildFile; fileRef = 89C2B37A1896A35500B51FCB /* navItem.png */; };
+		89C2B37D1896A35500B51FCB /* navItem@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 89C2B37B1896A35500B51FCB /* navItem@2x.png */; };
+		89C2B3801896A59F00B51FCB /* Blenda Script.otf in Resources */ = {isa = PBXBuildFile; fileRef = 89C2B37F1896A59F00B51FCB /* Blenda Script.otf */; };
+		89C2B3861896ACAD00B51FCB /* ResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89C2B3851896ACAD00B51FCB /* ResultsViewController.m */; };
+		BC889493A33F444FBFDB6EC0 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C40464594854E848B9078C8 /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +41,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5C40464594854E848B9078C8 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		8982CB0518969CDD00D059B5 /* Which.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Which.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8982CB0818969CDD00D059B5 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		8982CB0A18969CDD00D059B5 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -45,14 +53,23 @@
 		8982CB1718969CDD00D059B5 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		8982CB1818969CDD00D059B5 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		8982CB1B18969CDD00D059B5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		8982CB1D18969CDD00D059B5 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		8982CB1E18969CDD00D059B5 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		8982CB2018969CDD00D059B5 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		8982CB2618969CDD00D059B5 /* WhichTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WhichTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8982CB2718969CDD00D059B5 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		8982CB2F18969CDD00D059B5 /* WhichTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "WhichTests-Info.plist"; sourceTree = "<group>"; };
 		8982CB3118969CDD00D059B5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		8982CB3318969CDD00D059B5 /* WhichTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WhichTests.m; sourceTree = "<group>"; };
+		8982CB4018969DA200D059B5 /* Raleway-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-Regular.ttf"; sourceTree = "<group>"; };
+		89C2B3741896A2E400B51FCB /* GameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameViewController.h; sourceTree = "<group>"; };
+		89C2B3751896A2E400B51FCB /* GameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameViewController.m; sourceTree = "<group>"; };
+		89C2B3771896A32500B51FCB /* GameTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameTableViewController.h; sourceTree = "<group>"; };
+		89C2B3781896A32500B51FCB /* GameTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameTableViewController.m; sourceTree = "<group>"; };
+		89C2B37A1896A35500B51FCB /* navItem.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = navItem.png; sourceTree = "<group>"; };
+		89C2B37B1896A35500B51FCB /* navItem@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navItem@2x.png"; sourceTree = "<group>"; };
+		89C2B37F1896A59F00B51FCB /* Blenda Script.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Blenda Script.otf"; sourceTree = "<group>"; };
+		89C2B3841896ACAD00B51FCB /* ResultsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResultsViewController.h; sourceTree = "<group>"; };
+		89C2B3851896ACAD00B51FCB /* ResultsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResultsViewController.m; sourceTree = "<group>"; };
+		FCAE3B2B859742118A5AB8CA /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +80,7 @@
 				8982CB0B18969CDD00D059B5 /* CoreGraphics.framework in Frameworks */,
 				8982CB0D18969CDD00D059B5 /* UIKit.framework in Frameworks */,
 				8982CB0918969CDD00D059B5 /* Foundation.framework in Frameworks */,
+				BC889493A33F444FBFDB6EC0 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -82,10 +100,13 @@
 		8982CAFC18969CDD00D059B5 = {
 			isa = PBXGroup;
 			children = (
+				89C2B37F1896A59F00B51FCB /* Blenda Script.otf */,
+				8982CB4018969DA200D059B5 /* Raleway-Regular.ttf */,
 				8982CB0E18969CDD00D059B5 /* Which */,
 				8982CB2D18969CDD00D059B5 /* WhichTests */,
 				8982CB0718969CDD00D059B5 /* Frameworks */,
 				8982CB0618969CDD00D059B5 /* Products */,
+				FCAE3B2B859742118A5AB8CA /* Pods.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -105,6 +126,7 @@
 				8982CB0A18969CDD00D059B5 /* CoreGraphics.framework */,
 				8982CB0C18969CDD00D059B5 /* UIKit.framework */,
 				8982CB2718969CDD00D059B5 /* XCTest.framework */,
+				5C40464594854E848B9078C8 /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -114,9 +136,13 @@
 			children = (
 				8982CB1718969CDD00D059B5 /* AppDelegate.h */,
 				8982CB1818969CDD00D059B5 /* AppDelegate.m */,
+				89C2B3771896A32500B51FCB /* GameTableViewController.h */,
+				89C2B3781896A32500B51FCB /* GameTableViewController.m */,
+				89C2B3741896A2E400B51FCB /* GameViewController.h */,
+				89C2B3751896A2E400B51FCB /* GameViewController.m */,
+				89C2B3841896ACAD00B51FCB /* ResultsViewController.h */,
+				89C2B3851896ACAD00B51FCB /* ResultsViewController.m */,
 				8982CB1A18969CDD00D059B5 /* Main.storyboard */,
-				8982CB1D18969CDD00D059B5 /* ViewController.h */,
-				8982CB1E18969CDD00D059B5 /* ViewController.m */,
 				8982CB2018969CDD00D059B5 /* Images.xcassets */,
 				8982CB0F18969CDD00D059B5 /* Supporting Files */,
 			);
@@ -126,6 +152,7 @@
 		8982CB0F18969CDD00D059B5 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				89C2B37E1896A35C00B51FCB /* Images */,
 				8982CB1018969CDD00D059B5 /* Which-Info.plist */,
 				8982CB1118969CDD00D059B5 /* InfoPlist.strings */,
 				8982CB1418969CDD00D059B5 /* main.m */,
@@ -152,6 +179,15 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		89C2B37E1896A35C00B51FCB /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				89C2B37B1896A35500B51FCB /* navItem@2x.png */,
+				89C2B37A1896A35500B51FCB /* navItem.png */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -159,9 +195,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8982CB3718969CDD00D059B5 /* Build configuration list for PBXNativeTarget "Which" */;
 			buildPhases = (
+				CAD58279BF67480FAB8C6024 /* Check Pods Manifest.lock */,
 				8982CB0118969CDD00D059B5 /* Sources */,
 				8982CB0218969CDD00D059B5 /* Frameworks */,
 				8982CB0318969CDD00D059B5 /* Resources */,
+				A3167DB9EEAA456E9B5F01EB /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -229,8 +267,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				8982CB2118969CDD00D059B5 /* Images.xcassets in Resources */,
+				89C2B37D1896A35500B51FCB /* navItem@2x.png in Resources */,
 				8982CB1318969CDD00D059B5 /* InfoPlist.strings in Resources */,
 				8982CB1C18969CDD00D059B5 /* Main.storyboard in Resources */,
+				89C2B3801896A59F00B51FCB /* Blenda Script.otf in Resources */,
+				8982CB4118969DA200D059B5 /* Raleway-Regular.ttf in Resources */,
+				89C2B37C1896A35500B51FCB /* navItem.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -244,14 +286,49 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		A3167DB9EEAA456E9B5F01EB /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CAD58279BF67480FAB8C6024 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		8982CB0118969CDD00D059B5 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8982CB1F18969CDD00D059B5 /* ViewController.m in Sources */,
 				8982CB1918969CDD00D059B5 /* AppDelegate.m in Sources */,
+				89C2B3791896A32500B51FCB /* GameTableViewController.m in Sources */,
+				89C2B3761896A2E400B51FCB /* GameViewController.m in Sources */,
 				8982CB1518969CDD00D059B5 /* main.m in Sources */,
+				89C2B3861896ACAD00B51FCB /* ResultsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -375,6 +452,7 @@
 		};
 		8982CB3818969CDD00D059B5 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FCAE3B2B859742118A5AB8CA /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -388,6 +466,7 @@
 		};
 		8982CB3918969CDD00D059B5 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FCAE3B2B859742118A5AB8CA /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -460,6 +539,7 @@
 				8982CB3918969CDD00D059B5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		8982CB3A18969CDD00D059B5 /* Build configuration list for PBXNativeTarget "WhichTests" */ = {
 			isa = XCConfigurationList;
@@ -468,6 +548,7 @@
 				8982CB3C18969CDD00D059B5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
