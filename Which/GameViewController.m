@@ -22,7 +22,10 @@
 @property (strong, nonatomic) IBOutlet UIPageControl *pageControl;
 @property (strong, nonatomic) IBOutlet UIButton *nextQuestionButton;
 
-@property (nonatomic, strong) NSMutableArray *questionLabels; // holds the UILabel objects for the options
+@property (nonatomic, strong) NSMutableArray *options; // holds the pfobjects of the options
+
+@property (nonatomic, strong) NSMutableArray *optionLabels; // holds the UILabel objects for the options
+
 
 @property (strong, nonatomic) NSArray *questions; //holds all the questions for the entire game
 @property (strong, nonatomic) PFObject *currentQuestion;
@@ -47,6 +50,8 @@
 {
     [super viewDidLoad];
     self.score = 0;
+    self.options = [NSMutableArray array];
+    self.optionImages = [NSMutableArray array];
     [self.currentGameTitleLabel setFont:[UIFont fontWithName:@"BlendaScript" size:20.0]];
     self.currentGameTitleLabel.text = self.game[@"title"];
     [self.currentQuestionTitleLabel setFont:[UIFont fontWithName:@"BlendaScript" size:20.0]];
@@ -59,10 +64,30 @@
     self.pageControl.currentPage = 0;
     
     
-    PFRelation *questionsRelations = [self.game relationForKey:@"questions"];
+    PFRelation *questionsRelations = self.game[@"questions"];
     PFQuery *query = [questionsRelations query];
+    // grab all of the questions to ask in this game
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         self.questions = objects;
+        // grab all of the options to ask in this game
+        NSInteger count = 0;
+        for(PFObject *question in self.questions) {
+            PFRelation *optionsRelation = question[@"options"];
+            PFQuery *optionsQuery = [optionsRelation query];
+            NSMutableArray *currentQuestionOptions = [NSMutableArray arrayWithArray:[optionsQuery findObjects]];
+            [self.options addObject:currentQuestionOptions];
+            
+            NSMutableArray *images = [NSMutableArray array];
+            // grab all of the images for each options
+            NSMutableArray *optionsForQuestion = [self.options objectAtIndex:count];
+            for(PFObject *option in optionsForQuestion) {
+                PFFile *image = option[@"image"];
+                [images addObject:[image getData]];
+            }
+            [self.optionImages addObject:images];
+            count++;
+        }
+        
         [self displayQuestion:0];
         
     }];
@@ -73,37 +98,40 @@
     // called when we want to change the question and options that are displayed...
     self.currentQuestion = self.questions[questionNumber];
     self.currentQuestionTitleLabel.text = self.currentQuestion[@"title"]; // change the question title
+    
     NSMutableArray *questionLabels = [NSMutableArray array];
-    NSArray *currentQuestionOptions = self.currentQuestion[@"options"];
+    NSArray *currentQuestionOptions = self.options[questionNumber];
     for(NSInteger i = 0; i < currentQuestionOptions.count; i++) {
         [questionLabels addObject:[NSNull null]];
     }
-    self.questionLabels = questionLabels;
+    self.optionLabels = questionLabels;
     self.pageControl.numberOfPages = currentQuestionOptions.count;
     self.pageControl.currentPage = 0;
+        
     self.scrollView.contentSize = CGSizeMake(CGRectGetWidth(self.scrollView.frame) * currentQuestionOptions.count, CGRectGetHeight(self.scrollView.frame));
-    
+        
     [self gotoPage:NO]; // reset us back to the first option if we're not already there
+        
     [self loadScrollViewWithPage:0];
     [self loadScrollViewWithPage:1];
+
 }
 
 -(void)loadScrollViewWithPage:(NSInteger)page
 {
-    NSArray *options = self.currentQuestion[@"options"];
-    if(page >= options.count || page < 0) {
+    if(page >= self.options.count || page < 0) {
         return;
     }
     
-    UILabel *label = [self.questionLabels objectAtIndex:page];
+    UILabel *label = [self.optionLabels objectAtIndex:page];
     if ((NSNull *)label == [NSNull null])
     {
-        //controller = [[MyViewController alloc] initWithPageNumber:page];
-        //[self.viewControllers replaceObjectAtIndex:page withObject:controller];
         label = [[UILabel alloc] init];
-        NSArray *currentQuestionOptions = self.currentQuestion[@"options"];
-        label.text = [currentQuestionOptions objectAtIndex:page];
-        [self.questionLabels replaceObjectAtIndex:page withObject:label];
+        NSInteger indexOfCurrentOptions = [self.questions indexOfObject:self.currentQuestion];
+        NSMutableArray *currentOptions = [self.options objectAtIndex:indexOfCurrentOptions];
+        label.text = currentOptions[page][@"title"];
+        [currentOptions replaceObjectAtIndex:page withObject:label];
+        [self.optionLabels replaceObjectAtIndex:indexOfCurrentOptions withObject:currentOptions];
     }
     
     if (label.superview == nil) {
@@ -113,7 +141,6 @@
         label.frame = frame;
         
         [self.scrollView addSubview:label];
-        
     }
 }
 
@@ -172,9 +199,9 @@
 {
     self.score += self.pageControl.currentPage+1;
     // remove the uilabel views from the screen
-    for(NSInteger i = 0; i < self.questionLabels.count; i++) {
-        if(self.questionLabels[i] != [NSNull null]) {
-            [self.questionLabels[i] removeFromSuperview];
+    for(NSInteger i = 0; i < self.optionLabels.count; i++) {
+        if(self.optionLabels[i] != [NSNull null]) {
+            [self.optionLabels[i] removeFromSuperview];
         }
     }
     
