@@ -121,12 +121,17 @@
         frame.origin.y = 0;
         label.frame = frame;
         
-        [self.scrollView addSubview:label];
         PFFile *fileImage = self.currentOptions[page][@"image"];
         [fileImage getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
             UIImageView *imgView = [[UIImageView alloc] initWithImage:[UIImage imageWithData:data]];
+            CGRect iFrame = self.scrollView.frame;
+            iFrame.origin.x = CGRectGetWidth(iFrame) * page;
+            iFrame.origin.y = 0;
+            imgView.frame = iFrame;
             [self.scrollView addSubview:imgView];
+            [self.scrollView addSubview:label];
         }];
+        
     }
 }
 
