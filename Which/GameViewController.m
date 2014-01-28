@@ -22,10 +22,8 @@
 @property (strong, nonatomic) IBOutlet UIPageControl *pageControl;
 @property (strong, nonatomic) IBOutlet UIButton *nextQuestionButton;
 
-@property (nonatomic, strong) NSMutableArray *options; // holds the pfobjects of the options
-
-@property (nonatomic, strong) NSMutableArray *optionLabels; // holds the UILabel objects for the options
-
+@property (nonatomic, strong) NSMutableArray *currentOptions; // holds the pfobjects of the options
+@property (nonatomic, strong) NSMutableArray *currentOptionsLabels; // holds the UILabel objects for the options
 
 @property (strong, nonatomic) NSArray *questions; //holds all the questions for the entire game
 @property (strong, nonatomic) PFObject *currentQuestion;
@@ -50,11 +48,12 @@
 {
     [super viewDidLoad];
     self.score = 0;
-    self.options = [NSMutableArray array];
-    self.optionImages = [NSMutableArray array];
+    self.currentOptions = [NSMutableArray array];
+    self.currentOptionsLabels = [NSMutableArray array];
+    
     [self.currentGameTitleLabel setFont:[UIFont fontWithName:@"BlendaScript" size:20.0]];
-    self.currentGameTitleLabel.text = self.game[@"title"];
     [self.currentQuestionTitleLabel setFont:[UIFont fontWithName:@"BlendaScript" size:20.0]];
+    self.currentGameTitleLabel.text = self.game[@"title"];
     
     self.scrollView.delegate = self;
     self.scrollView.pagingEnabled = YES;
@@ -70,24 +69,6 @@
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         self.questions = objects;
         // grab all of the options to ask in this game
-        NSInteger count = 0;
-        for(PFObject *question in self.questions) {
-            PFRelation *optionsRelation = question[@"options"];
-            PFQuery *optionsQuery = [optionsRelation query];
-            NSMutableArray *currentQuestionOptions = [NSMutableArray arrayWithArray:[optionsQuery findObjects]];
-            [self.options addObject:currentQuestionOptions];
-            
-            NSMutableArray *images = [NSMutableArray array];
-            // grab all of the images for each options
-            NSMutableArray *optionsForQuestion = [self.options objectAtIndex:count];
-            for(PFObject *option in optionsForQuestion) {
-                PFFile *image = option[@"image"];
-                [images addObject:[image getData]];
-            }
-            [self.optionImages addObject:images];
-            count++;
-        }
-        
         [self displayQuestion:0];
         
     }];
@@ -99,39 +80,39 @@
     self.currentQuestion = self.questions[questionNumber];
     self.currentQuestionTitleLabel.text = self.currentQuestion[@"title"]; // change the question title
     
-    NSMutableArray *questionLabels = [NSMutableArray array];
-    NSArray *currentQuestionOptions = self.options[questionNumber];
-    for(NSInteger i = 0; i < currentQuestionOptions.count; i++) {
-        [questionLabels addObject:[NSNull null]];
-    }
-    self.optionLabels = questionLabels;
-    self.pageControl.numberOfPages = currentQuestionOptions.count;
-    self.pageControl.currentPage = 0;
+    PFRelation *questionToOptions = [self.currentQuestion relationForKey:@"options"];
+    PFQuery *query = [questionToOptions query];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        self.currentOptions = [NSMutableArray arrayWithArray:objects];
+        NSMutableArray *optionLabels = [NSMutableArray array];
+        for(PFObject *option in self.currentOptions) {
+            [optionLabels addObject:[NSNull null]];
+        }
+        self.currentOptionsLabels = optionLabels;
         
-    self.scrollView.contentSize = CGSizeMake(CGRectGetWidth(self.scrollView.frame) * currentQuestionOptions.count, CGRectGetHeight(self.scrollView.frame));
+        self.pageControl.numberOfPages = self.currentOptions.count;
+        self.pageControl.currentPage = 0;
         
-    [self gotoPage:NO]; // reset us back to the first option if we're not already there
+        self.scrollView.contentSize = CGSizeMake(CGRectGetWidth(self.scrollView.frame) * self.currentOptions.count, CGRectGetHeight(self.scrollView.frame));
         
-    [self loadScrollViewWithPage:0];
-    [self loadScrollViewWithPage:1];
+        [self loadScrollViewWithPage:0];
+        [self loadScrollViewWithPage:1];
+        
+    }];
 
 }
 
 -(void)loadScrollViewWithPage:(NSInteger)page
 {
-    if(page >= self.options.count || page < 0) {
+    if(page >= self.currentOptions.count || page < 0) {
         return;
     }
     
-    UILabel *label = [self.optionLabels objectAtIndex:page];
+    UILabel *label = [self.currentOptionsLabels objectAtIndex:page];
     if ((NSNull *)label == [NSNull null])
     {
         label = [[UILabel alloc] init];
-        NSInteger indexOfCurrentOptions = [self.questions indexOfObject:self.currentQuestion];
-        NSMutableArray *currentOptions = [self.options objectAtIndex:indexOfCurrentOptions];
-        label.text = currentOptions[page][@"title"];
-        [currentOptions replaceObjectAtIndex:page withObject:label];
-        [self.optionLabels replaceObjectAtIndex:indexOfCurrentOptions withObject:currentOptions];
+        label.text = self.currentOptions[page][@"title"];
     }
     
     if (label.superview == nil) {
@@ -199,9 +180,9 @@
 {
     self.score += self.pageControl.currentPage+1;
     // remove the uilabel views from the screen
-    for(NSInteger i = 0; i < self.optionLabels.count; i++) {
-        if(self.optionLabels[i] != [NSNull null]) {
-            [self.optionLabels[i] removeFromSuperview];
+    for(NSInteger i = 0; i < self.currentOptionsLabels.count; i++) {
+        if(self.currentOptionsLabels[i] != [NSNull null]) {
+            [self.currentOptionsLabels[i] removeFromSuperview];
         }
     }
     
