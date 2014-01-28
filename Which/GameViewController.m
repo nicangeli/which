@@ -122,6 +122,11 @@
         label.frame = frame;
         
         [self.scrollView addSubview:label];
+        PFFile *fileImage = self.currentOptions[page][@"image"];
+        [fileImage getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+            UIImageView *imgView = [[UIImageView alloc] initWithImage:[UIImage imageWithData:data]];
+            [self.scrollView addSubview:imgView];
+        }];
     }
 }
 
