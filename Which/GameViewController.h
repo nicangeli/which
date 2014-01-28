@@ -11,7 +11,6 @@
 @interface GameViewController : UIViewController <UIScrollViewDelegate>
 
 @property (nonatomic, strong) PFObject *game;
-@property (strong, nonatomic) IBOutlet UILabel *testLabel;
 
 -(IBAction)nextQuestionButton:(id)sender;
 

@@ -50,6 +50,7 @@
     self.score = 0;
     self.currentOptions = [NSMutableArray array];
     self.currentOptionsLabels = [NSMutableArray array];
+    [self.nextQuestionButton.titleLabel setFont:[UIFont fontWithName:@"BlendaScript" size:30.0]];
     
     [self.currentGameTitleLabel setFont:[UIFont fontWithName:@"BlendaScript" size:20.0]];
     [self.currentQuestionTitleLabel setFont:[UIFont fontWithName:@"BlendaScript" size:20.0]];

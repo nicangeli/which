@@ -90,6 +90,7 @@
                     <connections>
                         <outlet property="currentGameTitleLabel" destination="4tH-2M-tAz" id="rCT-1x-4F1"/>
                         <outlet property="currentQuestionTitleLabel" destination="EG4-Ty-6Ax" id="ebD-nK-Vuw"/>
+                        <outlet property="nextQuestionButton" destination="EvQ-zX-V1l" id="t6W-nk-vjK"/>
                         <outlet property="pageControl" destination="n7w-zp-fdN" id="mb3-zJ-mRd"/>
                         <outlet property="scrollView" destination="z5Z-er-Y2R" id="enW-46-Lcp"/>
                     </connections>
