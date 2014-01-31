@@ -53,10 +53,13 @@
     [self.nextQuestionButton.titleLabel setFont:[UIFont fontWithName:@"BlendaScript" size:30.0]];
     
     [self.currentGameTitleLabel setFont:[UIFont fontWithName:@"BlendaScript" size:20.0]];
-    [self.currentQuestionTitleLabel setFont:[UIFont fontWithName:@"BlendaScript" size:20.0]];
+    [self.currentQuestionTitleLabel setFont:[UIFont fontWithName:@"Raleway" size:20.0]];
     self.currentGameTitleLabel.text = self.game[@"title"];
     
     self.scrollView.delegate = self;
+    CGRect frame = self.scrollView.frame;
+    frame.origin.y = 0;
+    self.scrollView.frame= frame;
     self.scrollView.pagingEnabled = YES;
     self.scrollView.showsHorizontalScrollIndicator = NO;
     self.scrollView.showsVerticalScrollIndicator = NO;
@@ -118,19 +121,27 @@
     
     if (label.superview == nil) {
         CGRect frame = self.scrollView.frame;
+        //CGRect frame = CGRectMake(100, 100, 200, self.scrollView.frame.size.width);
         frame.origin.x = CGRectGetWidth(frame) * page;
-        frame.origin.y = 0;
+        frame.origin.y = self.scrollView.frame.size.height - 50;
+        frame.size.height = 50.0;
         label.frame = frame;
+        
+        label.backgroundColor = [UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:0.5];
         
         PFFile *fileImage = self.currentOptions[page][@"image"];
         [fileImage getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
             UIImageView *imgView = [[UIImageView alloc] initWithImage:[UIImage imageWithData:data]];
+            
             CGRect iFrame = self.scrollView.frame;
             iFrame.origin.x = CGRectGetWidth(iFrame) * page;
             iFrame.origin.y = 0;
             imgView.frame = iFrame;
+            
             [self.scrollView addSubview:imgView];
+            imgView.backgroundColor = [UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:0.5];
             [self.scrollView addSubview:label];
+            [label setFont:[UIFont fontWithName:@"Raleway" size:20.0]];
         }];
         
     }
@@ -190,11 +201,10 @@
 -(IBAction)nextQuestionButton:(id)sender
 {
     self.score += self.pageControl.currentPage+1;
+    
     // remove the uilabel views from the screen
-    for(NSInteger i = 0; i < self.currentOptionsLabels.count; i++) {
-        if(self.currentOptionsLabels[i] != [NSNull null]) {
-            [self.currentOptionsLabels[i] removeFromSuperview];
-        }
+    for(UIView *view in self.scrollView.subviews) {
+        [view removeFromSuperview];
     }
     
     // are we at the end of the game?
