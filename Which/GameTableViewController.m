@@ -11,10 +11,7 @@
 
 @interface GameTableViewController ()
 
-@end
-
-@interface GameTableViewController ()
-
+@property (nonatomic, strong)  NSMutableArray *colors;
 @end
 
 @implementation GameTableViewController
@@ -53,6 +50,18 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.colors = [[NSMutableArray alloc] init];
+    [self.colors addObject:[UIColor colorWithRed:142.0/255 green:68.0/255 blue:173.0/255 alpha:1.0]];
+    [self.colors addObject:[UIColor colorWithRed:230.0/255 green:126.0/255 blue:34.0/255 alpha:1.0]];
+    [self.colors addObject:[UIColor colorWithRed:241.0/255 green:196.0/255 blue:15.0/255 alpha:1.0]];
+    [self.colors addObject:[UIColor colorWithRed:26.0/255 green:188.0/255 blue:156.0/255 alpha:1.0]];
+    [self.colors addObject:[UIColor colorWithRed:192.0/255 green:57.0/255 blue:43.0/255 alpha:1.0]];
+    [self.colors addObject:[UIColor colorWithRed:149.0/255 green:165.0/255 blue:166.0/255 alpha:1.0]];
+    [self.colors addObject:[UIColor colorWithRed:41.0/255 green:128.0/255 blue:185.0/255 alpha:1.0]];
+    
+    // remove the back button
+    self.navigationController.topViewController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+    
     self.parseClassName = @"Game";
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -140,15 +149,22 @@
     PFTableViewCell *cell = (PFTableViewCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[PFTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell.textLabel.font = [UIFont fontWithName:@"Raleway" size:20];
+        cell.textLabel.textAlignment = NSTextAlignmentJustified;
+
+
     }
-    
+    NSInteger modIndex = indexPath.row % self.colors.count;
+    cell.backgroundColor = [self.colors objectAtIndex:modIndex];
+
     // Configure the cell
     cell.textLabel.text = [object objectForKey:@"title"];
+    
+    // get color
     //cell.imageView.file = [object objectForKey:self.imageKey];
     
     return cell;
 }
-
 
 /*
  // Override if you need to change the ordering of objects in the table.

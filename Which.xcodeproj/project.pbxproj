@@ -23,10 +23,11 @@
 		8982CB4118969DA200D059B5 /* Raleway-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8982CB4018969DA200D059B5 /* Raleway-Regular.ttf */; };
 		89C2B3761896A2E400B51FCB /* GameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89C2B3751896A2E400B51FCB /* GameViewController.m */; };
 		89C2B3791896A32500B51FCB /* GameTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89C2B3781896A32500B51FCB /* GameTableViewController.m */; };
-		89C2B37C1896A35500B51FCB /* navItem.png in Resources */ = {isa = PBXBuildFile; fileRef = 89C2B37A1896A35500B51FCB /* navItem.png */; };
-		89C2B37D1896A35500B51FCB /* navItem@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 89C2B37B1896A35500B51FCB /* navItem@2x.png */; };
 		89C2B3801896A59F00B51FCB /* Blenda Script.otf in Resources */ = {isa = PBXBuildFile; fileRef = 89C2B37F1896A59F00B51FCB /* Blenda Script.otf */; };
 		89C2B3861896ACAD00B51FCB /* ResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89C2B3851896ACAD00B51FCB /* ResultsViewController.m */; };
+		89DF4F5A189C500300ECC34C /* navItem.png in Resources */ = {isa = PBXBuildFile; fileRef = 89DF4F58189C500300ECC34C /* navItem.png */; };
+		89DF4F5B189C500300ECC34C /* navItem@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 89DF4F59189C500300ECC34C /* navItem@2x.png */; };
+		89DF4F5D189C516600ECC34C /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89DF4F5C189C516600ECC34C /* Social.framework */; };
 		BC889493A33F444FBFDB6EC0 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C40464594854E848B9078C8 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -64,11 +65,12 @@
 		89C2B3751896A2E400B51FCB /* GameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameViewController.m; sourceTree = "<group>"; };
 		89C2B3771896A32500B51FCB /* GameTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameTableViewController.h; sourceTree = "<group>"; };
 		89C2B3781896A32500B51FCB /* GameTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameTableViewController.m; sourceTree = "<group>"; };
-		89C2B37A1896A35500B51FCB /* navItem.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = navItem.png; sourceTree = "<group>"; };
-		89C2B37B1896A35500B51FCB /* navItem@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navItem@2x.png"; sourceTree = "<group>"; };
 		89C2B37F1896A59F00B51FCB /* Blenda Script.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Blenda Script.otf"; sourceTree = "<group>"; };
 		89C2B3841896ACAD00B51FCB /* ResultsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResultsViewController.h; sourceTree = "<group>"; };
 		89C2B3851896ACAD00B51FCB /* ResultsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResultsViewController.m; sourceTree = "<group>"; };
+		89DF4F58189C500300ECC34C /* navItem.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = navItem.png; sourceTree = "<group>"; };
+		89DF4F59189C500300ECC34C /* navItem@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navItem@2x.png"; sourceTree = "<group>"; };
+		89DF4F5C189C516600ECC34C /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		FCAE3B2B859742118A5AB8CA /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -77,6 +79,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				89DF4F5D189C516600ECC34C /* Social.framework in Frameworks */,
 				8982CB0B18969CDD00D059B5 /* CoreGraphics.framework in Frameworks */,
 				8982CB0D18969CDD00D059B5 /* UIKit.framework in Frameworks */,
 				8982CB0918969CDD00D059B5 /* Foundation.framework in Frameworks */,
@@ -122,6 +125,7 @@
 		8982CB0718969CDD00D059B5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				89DF4F5C189C516600ECC34C /* Social.framework */,
 				8982CB0818969CDD00D059B5 /* Foundation.framework */,
 				8982CB0A18969CDD00D059B5 /* CoreGraphics.framework */,
 				8982CB0C18969CDD00D059B5 /* UIKit.framework */,
@@ -182,8 +186,8 @@
 		89C2B37E1896A35C00B51FCB /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				89C2B37B1896A35500B51FCB /* navItem@2x.png */,
-				89C2B37A1896A35500B51FCB /* navItem.png */,
+				89DF4F58189C500300ECC34C /* navItem.png */,
+				89DF4F59189C500300ECC34C /* navItem@2x.png */,
 			);
 			name = Images;
 			sourceTree = "<group>";
@@ -267,12 +271,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				8982CB2118969CDD00D059B5 /* Images.xcassets in Resources */,
-				89C2B37D1896A35500B51FCB /* navItem@2x.png in Resources */,
 				8982CB1318969CDD00D059B5 /* InfoPlist.strings in Resources */,
+				89DF4F5B189C500300ECC34C /* navItem@2x.png in Resources */,
 				8982CB1C18969CDD00D059B5 /* Main.storyboard in Resources */,
 				89C2B3801896A59F00B51FCB /* Blenda Script.otf in Resources */,
+				89DF4F5A189C500300ECC34C /* navItem.png in Resources */,
 				8982CB4118969DA200D059B5 /* Raleway-Regular.ttf in Resources */,
-				89C2B37C1896A35500B51FCB /* navItem.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

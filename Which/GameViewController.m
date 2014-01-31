@@ -55,10 +55,10 @@
     [self.currentGameTitleLabel setFont:[UIFont fontWithName:@"BlendaScript" size:20.0]];
     [self.currentQuestionTitleLabel setFont:[UIFont fontWithName:@"Raleway" size:20.0]];
     self.currentGameTitleLabel.text = self.game[@"title"];
+    self.currentGameTitleLabel.textColor = [UIColor colorWithRed:46.0/255 green:204.0/255 blue:113.0/255 alpha:1.0];
     
     
     self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 145, self.view.frame.size.width, self.view.frame.size.height - 260)];
-    self.scrollView.backgroundColor = [UIColor colorWithRed:46.0/255 green:204.0/255 blue:113.0/255 alpha:1.0];
     [self.view addSubview:self.scrollView];
     self.scrollView.delegate = self;
     //CGRect frame = self.scrollView.frame;
@@ -126,7 +126,6 @@
     
     if (label.superview == nil) {
         CGRect frame = self.scrollView.frame;
-        //CGRect frame = CGRectMake(100, 100, 200, self.scrollView.frame.size.width);
         frame.origin.x = CGRectGetWidth(frame) * page;
         frame.origin.y = self.scrollView.frame.size.height - 50;
         frame.size.height = 50.0;

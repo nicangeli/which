@@ -14,4 +14,7 @@
 @property (nonatomic, strong) NSArray *gameQuestions;
 @property (nonatomic) NSInteger score;
 
+-(IBAction)postToFacebook:(id)sender;
+-(IBAction)postToTwitter:(id)sender;
+
 @end
