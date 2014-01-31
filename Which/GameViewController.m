@@ -56,10 +56,14 @@
     [self.currentQuestionTitleLabel setFont:[UIFont fontWithName:@"Raleway" size:20.0]];
     self.currentGameTitleLabel.text = self.game[@"title"];
     
+    
+    self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 145, self.view.frame.size.width, self.view.frame.size.height - 260)];
+    self.scrollView.backgroundColor = [UIColor colorWithRed:46.0/255 green:204.0/255 blue:113.0/255 alpha:1.0];
+    [self.view addSubview:self.scrollView];
     self.scrollView.delegate = self;
-    CGRect frame = self.scrollView.frame;
-    frame.origin.y = 0;
-    self.scrollView.frame= frame;
+    //CGRect frame = self.scrollView.frame;
+    //frame.origin.y = 0;
+    //self.scrollView.frame= frame;
     self.scrollView.pagingEnabled = YES;
     self.scrollView.showsHorizontalScrollIndicator = NO;
     self.scrollView.showsVerticalScrollIndicator = NO;

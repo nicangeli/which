@@ -48,10 +48,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="z5Z-er-Y2R">
-                                <rect key="frame" x="0.0" y="142" width="326" height="308"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                            </scrollView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="272" translatesAutoresizingMaskIntoConstraints="NO" id="4tH-2M-tAz">
                                 <rect key="frame" x="11" y="85" width="272" height="26"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -92,7 +88,6 @@
                         <outlet property="currentQuestionTitleLabel" destination="EG4-Ty-6Ax" id="ebD-nK-Vuw"/>
                         <outlet property="nextQuestionButton" destination="EvQ-zX-V1l" id="t6W-nk-vjK"/>
                         <outlet property="pageControl" destination="n7w-zp-fdN" id="mb3-zJ-mRd"/>
-                        <outlet property="scrollView" destination="z5Z-er-Y2R" id="enW-46-Lcp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PD3-QZ-eaL" userLabel="First Responder" sceneMemberID="firstResponder"/>
