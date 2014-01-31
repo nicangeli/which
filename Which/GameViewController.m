@@ -121,6 +121,7 @@
     {
         label = [[UILabel alloc] init];
         label.text = self.currentOptions[page][@"title"];
+        label.textAlignment = NSTextAlignmentCenter;
     }
     
     if (label.superview == nil) {
@@ -136,6 +137,7 @@
         PFFile *fileImage = self.currentOptions[page][@"image"];
         [fileImage getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
             UIImageView *imgView = [[UIImageView alloc] initWithImage:[UIImage imageWithData:data]];
+            imgView.contentMode = UIViewContentModeScaleAspectFit;
             
             CGRect iFrame = self.scrollView.frame;
             iFrame.origin.x = CGRectGetWidth(iFrame) * page;
