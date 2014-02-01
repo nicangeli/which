@@ -58,9 +58,10 @@
     self.currentGameTitleLabel.textColor = [UIColor colorWithRed:46.0/255 green:204.0/255 blue:113.0/255 alpha:1.0];
     
     
-    self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 145, self.view.frame.size.width, self.view.frame.size.height - 260)];
+    self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 145, self.view.frame.size.width, self.view.frame.size.height - 180)];
     [self.view addSubview:self.scrollView];
     self.scrollView.delegate = self;
+    self.scrollView.userInteractionEnabled = YES;
     //CGRect frame = self.scrollView.frame;
     //frame.origin.y = 0;
     //self.scrollView.frame= frame;
@@ -68,6 +69,8 @@
     self.scrollView.showsHorizontalScrollIndicator = NO;
     self.scrollView.showsVerticalScrollIndicator = NO;
     self.scrollView.scrollsToTop = NO;
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap)];
+    [self.scrollView addGestureRecognizer:tap];
     self.pageControl.currentPage = 0;
     
     
@@ -81,6 +84,13 @@
         
     }];
 }
+
+-(void)handleTap
+{
+    NSLog(@"Tapped");
+    [self nextQuestionButton:nil];
+}
+
 
 -(void)displayQuestion:(NSInteger)questionNumber
 {

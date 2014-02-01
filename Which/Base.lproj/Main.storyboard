@@ -62,23 +62,10 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <pageControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="n7w-zp-fdN">
-                                <rect key="frame" x="0.0" y="450" width="320" height="37"/>
+                                <rect key="frame" x="0.0" y="531" width="320" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </pageControl>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EvQ-zX-V1l">
-                                <rect key="frame" x="11" y="495" width="296" height="53"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.90588235294117647" green="0.20392156862745098" blue="0.47450980392156861" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="27"/>
-                                <state key="normal" title="That's Me!">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="nextQuestionButton:" destination="V1D-Ah-NJR" eventType="touchUpInside" id="a6E-eJ-zfZ"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -86,7 +73,6 @@
                     <connections>
                         <outlet property="currentGameTitleLabel" destination="4tH-2M-tAz" id="rCT-1x-4F1"/>
                         <outlet property="currentQuestionTitleLabel" destination="EG4-Ty-6Ax" id="ebD-nK-Vuw"/>
-                        <outlet property="nextQuestionButton" destination="EvQ-zX-V1l" id="t6W-nk-vjK"/>
                         <outlet property="pageControl" destination="n7w-zp-fdN" id="mb3-zJ-mRd"/>
                     </connections>
                 </viewController>
