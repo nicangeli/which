@@ -97,6 +97,12 @@
     // called when we want to change the question and options that are displayed...
     self.currentQuestion = self.questions[questionNumber];
     self.currentQuestionTitleLabel.text = self.currentQuestion[@"title"]; // change the question title
+    self.pageControl.currentPage = 0;
+    // move the scroll view to start
+    CGRect bounds = self.scrollView.bounds;
+    bounds.origin.x =0;
+    bounds.origin.y = 0;
+    [self.scrollView scrollRectToVisible:bounds animated:NO];
     
     PFRelation *questionToOptions = [self.currentQuestion relationForKey:@"options"];
     PFQuery *query = [questionToOptions query];
@@ -109,7 +115,6 @@
         self.currentOptionsLabels = optionLabels;
         
         self.pageControl.numberOfPages = self.currentOptions.count;
-        self.pageControl.currentPage = 0;
         
         self.scrollView.contentSize = CGSizeMake(CGRectGetWidth(self.scrollView.frame) * self.currentOptions.count, CGRectGetHeight(self.scrollView.frame));
         

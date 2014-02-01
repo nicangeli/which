@@ -60,7 +60,9 @@
     [self.colors addObject:[UIColor colorWithRed:41.0/255 green:128.0/255 blue:185.0/255 alpha:1.0]];
     
     // remove the back button
-    self.navigationController.topViewController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+    //self.navigationController.topViewController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+    
+    self.navigationItem.hidesBackButton = YES;
     
     self.parseClassName = @"Game";
     // Uncomment the following line to preserve selection between presentations.
