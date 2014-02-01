@@ -49,7 +49,7 @@
     self.descriptionLabel.font = [UIFont fontWithName:@"Raleway" size:15];
     
     // set up the segue to the home screen when back is clicked
-    self.navigationController.topViewController.navigationItem.leftBarButtonItem =  [[UIBarButtonItem alloc] initWithTitle:@"Home" style:UIBarButtonItemStylePlain target:self action:@selector(moveHome)];
+    self.navigationController.topViewController.navigationItem.leftBarButtonItem =  [[UIBarButtonItem alloc] initWithTitle:@"   Home" style:UIBarButtonSystemItemEdit target:self action:@selector(moveHome)];
     
     
     PFRelation *relation = [self.game relationForKey:@"answers"];
