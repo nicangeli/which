@@ -12,6 +12,12 @@
 #define COCOAPODS_VERSION_MINOR_Facebook_iOS_SDK 11
 #define COCOAPODS_VERSION_PATCH_Facebook_iOS_SDK 1
 
+// MSCellAccessory
+#define COCOAPODS_POD_AVAILABLE_MSCellAccessory
+#define COCOAPODS_VERSION_MAJOR_MSCellAccessory 1
+#define COCOAPODS_VERSION_MINOR_MSCellAccessory 1
+#define COCOAPODS_VERSION_PATCH_MSCellAccessory 2
+
 // Parse
 #define COCOAPODS_POD_AVAILABLE_Parse
 #define COCOAPODS_VERSION_MAJOR_Parse 1

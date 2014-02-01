@@ -8,6 +8,7 @@
 
 #import "GameTableViewController.h"
 #import "GameViewController.h"
+#import "MSCellAccessory.h"
 
 @interface GameTableViewController ()
 
@@ -150,7 +151,7 @@
         cell = [[PFTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         cell.textLabel.font = [UIFont fontWithName:@"Raleway" size:20];
         cell.textLabel.textAlignment = NSTextAlignmentJustified;
-
+        cell.accessoryView = [MSCellAccessory accessoryWithType:FLAT_DISCLOSURE_INDICATOR color:[UIColor blackColor]];
 
     }
     NSInteger modIndex = indexPath.row % self.colors.count;

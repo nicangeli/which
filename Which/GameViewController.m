@@ -146,7 +146,7 @@
         frame.size.height = 50.0;
         label.frame = frame;
         
-        label.backgroundColor = [UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:0.5];
+        label.backgroundColor = [UIColor colorWithRed:255.0/255 green:99.0/255 blue:57.0/255 alpha:1.0];
         
         PFFile *fileImage = self.currentOptions[page][@"image"];
         [fileImage getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
@@ -154,8 +154,9 @@
             imgView.contentMode = UIViewContentModeScaleAspectFit;
             
             CGRect iFrame = self.scrollView.frame;
-            iFrame.origin.x = CGRectGetWidth(iFrame) * page;
+            iFrame.origin.x = CGRectGetWidth(iFrame) * page + 20;
             iFrame.origin.y = 0;
+            iFrame.size.width -= 40;
             imgView.frame = iFrame;
             
             [self.scrollView addSubview:imgView];

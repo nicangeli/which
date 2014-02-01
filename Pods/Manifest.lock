@@ -1,13 +1,16 @@
 PODS:
   - Facebook-iOS-SDK (3.11.1)
+  - MSCellAccessory (1.1.2)
   - Parse (1.2.18):
     - Facebook-iOS-SDK (~> 3.11)
 
 DEPENDENCIES:
+  - MSCellAccessory
   - Parse (~> 1.2.18)
 
 SPEC CHECKSUMS:
   Facebook-iOS-SDK: 42a1de39170b858d675c2453d8aace55c51be2bb
+  MSCellAccessory: 31ff1a805d885cd71a2af0307d15306d1bced99b
   Parse: 6dd57f2af9f89dc6facc755cec4e96f8b739b1fb
 
 COCOAPODS: 0.29.0
