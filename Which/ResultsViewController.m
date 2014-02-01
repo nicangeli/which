@@ -39,7 +39,6 @@
     [super viewWillAppear:animated];
     UIImage *image = [UIImage imageNamed:@"navItem.png"];
     UIImageView *imageView = [[UIImageView alloc] initWithImage: image];
-    self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:46.0/255 green:204.0/255 blue:113.0/255 alpha:1.0];
     self.navigationItem.titleView = imageView;
 }
 

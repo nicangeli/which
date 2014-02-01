@@ -59,9 +59,7 @@
     [self.colors addObject:[UIColor colorWithRed:149.0/255 green:165.0/255 blue:166.0/255 alpha:1.0]];
     [self.colors addObject:[UIColor colorWithRed:41.0/255 green:128.0/255 blue:185.0/255 alpha:1.0]];
     
-    // remove the back button
-    //self.navigationController.topViewController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
-    
+    // remove the back button   
     self.navigationItem.hidesBackButton = YES;
     
     self.parseClassName = @"Game";
@@ -82,7 +80,6 @@
     [super viewWillAppear:animated];
     UIImage *image = [UIImage imageNamed:@"navItem.png"];
     UIImageView *imageView = [[UIImageView alloc] initWithImage: image];
-    self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:46.0/255 green:204.0/255 blue:113.0/255 alpha:1.0];
     self.navigationItem.titleView = imageView;
 }
 

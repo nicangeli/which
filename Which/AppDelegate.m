@@ -16,6 +16,7 @@
     [Parse setApplicationId:@"tnfagd2VTU7mWgfquIIx8wcE6S8mrjG59nfoPP1q"
                   clientKey:@"d9w6dRQ7LUx7dJhXIwULvHWNBWYBaOCohtk42uz1"];
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
+    [self customizeAppearance];
     return YES;
 }
 
@@ -44,6 +45,13 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+#pragma mark - customizeAppearance
+
+-(void)customizeAppearance
+{
+    [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:46.0/255 green:204.0/255 blue:113.0/255 alpha:1.0]];
 }
 
 @end
