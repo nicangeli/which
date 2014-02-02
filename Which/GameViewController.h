@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface GameViewController : UIViewController <UIScrollViewDelegate>
+@interface GameViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate>
 
 @property (nonatomic, strong) PFObject *game;
 

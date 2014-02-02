@@ -18,9 +18,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *currentGameTitleLabel;
 @property (strong, nonatomic) IBOutlet UILabel *currentQuestionTitleLabel;
 
-@property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
-@property (strong, nonatomic) IBOutlet UIPageControl *pageControl;
-@property (strong, nonatomic) IBOutlet UIButton *nextQuestionButton;
+@property (nonatomic, strong) IBOutlet UICollectionView *collectionView;
 
 @property (nonatomic, strong) NSMutableArray *currentOptions; // holds the pfobjects of the options
 @property (nonatomic, strong) NSMutableArray *currentOptionsLabels; // holds the UILabel objects for the options
@@ -50,28 +48,11 @@
     self.score = 0;
     self.currentOptions = [NSMutableArray array];
     self.currentOptionsLabels = [NSMutableArray array];
-    [self.nextQuestionButton.titleLabel setFont:[UIFont fontWithName:@"BlendaScript" size:30.0]];
     
     [self.currentGameTitleLabel setFont:[UIFont fontWithName:@"BlendaScript" size:20.0]];
     [self.currentQuestionTitleLabel setFont:[UIFont fontWithName:@"Raleway" size:20.0]];
     self.currentGameTitleLabel.text = self.game[@"title"];
     self.currentGameTitleLabel.textColor = [UIColor colorWithRed:46.0/255 green:204.0/255 blue:113.0/255 alpha:1.0];
-    
-    
-    self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 145, self.view.frame.size.width, self.view.frame.size.height - 180)];
-    [self.view addSubview:self.scrollView];
-    self.scrollView.delegate = self;
-    self.scrollView.userInteractionEnabled = YES;
-    //CGRect frame = self.scrollView.frame;
-    //frame.origin.y = 0;
-    //self.scrollView.frame= frame;
-    self.scrollView.pagingEnabled = YES;
-    self.scrollView.showsHorizontalScrollIndicator = NO;
-    self.scrollView.showsVerticalScrollIndicator = NO;
-    self.scrollView.scrollsToTop = NO;
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap)];
-    [self.scrollView addGestureRecognizer:tap];
-    self.pageControl.currentPage = 0;
     
     
     PFRelation *questionsRelations = self.game[@"questions"];
@@ -85,10 +66,12 @@
     }];
 }
 
--(void)handleTap
+-(void)viewWillAppear:(BOOL)animated
 {
-    NSLog(@"Tapped");
-    [self nextQuestionButton:nil];
+    [super viewWillAppear:animated];
+    UIImage *image = [UIImage imageNamed:@"navItem.png"];
+    UIImageView *imageView = [[UIImageView alloc] initWithImage: image];
+    self.navigationItem.titleView = imageView;
 }
 
 
@@ -97,12 +80,6 @@
     // called when we want to change the question and options that are displayed...
     self.currentQuestion = self.questions[questionNumber];
     self.currentQuestionTitleLabel.text = self.currentQuestion[@"title"]; // change the question title
-    self.pageControl.currentPage = 0;
-    // move the scroll view to start
-    CGRect bounds = self.scrollView.bounds;
-    bounds.origin.x =0;
-    bounds.origin.y = 0;
-    [self.scrollView scrollRectToVisible:bounds animated:NO];
     
     PFRelation *questionToOptions = [self.currentQuestion relationForKey:@"options"];
     PFQuery *query = [questionToOptions query];
@@ -113,117 +90,18 @@
             [optionLabels addObject:[NSNull null]];
         }
         self.currentOptionsLabels = optionLabels;
-        
-        self.pageControl.numberOfPages = self.currentOptions.count;
-        
-        self.scrollView.contentSize = CGSizeMake(CGRectGetWidth(self.scrollView.frame) * self.currentOptions.count, CGRectGetHeight(self.scrollView.frame));
-        
-        [self loadScrollViewWithPage:0];
-        [self loadScrollViewWithPage:1];
+        [self.collectionView reloadData];
         
     }];
-
 }
 
--(void)loadScrollViewWithPage:(NSInteger)page
-{
-    if(page >= self.currentOptions.count || page < 0) {
-        return;
-    }
-    
-    UILabel *label = [self.currentOptionsLabels objectAtIndex:page];
-    if ((NSNull *)label == [NSNull null])
-    {
-        label = [[UILabel alloc] init];
-        label.text = self.currentOptions[page][@"title"];
-        label.textAlignment = NSTextAlignmentCenter;
-    }
-    
-    if (label.superview == nil) {
-        CGRect frame = self.scrollView.frame;
-        frame.origin.x = CGRectGetWidth(frame) * page;
-        frame.origin.y = self.scrollView.frame.size.height - 50;
-        frame.size.height = 50.0;
-        label.frame = frame;
-        
-        label.backgroundColor = [UIColor colorWithRed:255.0/255 green:99.0/255 blue:57.0/255 alpha:1.0];
-        
-        PFFile *fileImage = self.currentOptions[page][@"image"];
-        [fileImage getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
-            UIImageView *imgView = [[UIImageView alloc] initWithImage:[UIImage imageWithData:data]];
-            imgView.contentMode = UIViewContentModeScaleAspectFit;
-            
-            CGRect iFrame = self.scrollView.frame;
-            iFrame.origin.x = CGRectGetWidth(iFrame) * page + 20;
-            iFrame.origin.y = 0;
-            iFrame.size.width -= 40;
-            imgView.frame = iFrame;
-            
-            [self.scrollView addSubview:imgView];
-            imgView.backgroundColor = [UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:0.5];
-            [self.scrollView addSubview:label];
-            [label setFont:[UIFont fontWithName:@"Raleway" size:20.0]];
-        }];
-        
-    }
-}
-
--(void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    UIImage *image = [UIImage imageNamed:@"navItem.png"];
-    UIImageView *imageView = [[UIImageView alloc] initWithImage: image];
-    self.navigationItem.titleView = imageView;
-}
-
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
-{
-    // switch the indicator when more than 50% of the previous/next page is visible
-    CGFloat pageWidth = CGRectGetWidth(self.scrollView.frame);
-    NSUInteger page = floor((self.scrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
-    self.pageControl.currentPage = page;
-    
-    // load the visible page and the page on either side of it (to avoid flashes when the user starts scrolling)
-    [self loadScrollViewWithPage:page - 1];
-    [self loadScrollViewWithPage:page];
-    [self loadScrollViewWithPage:page + 1];
-    
-    // a possible optimization would be to unload the views+controllers which are no longer visible
-}
-
-- (void)gotoPage:(BOOL)animated
-{
-    NSInteger page = self.pageControl.currentPage;
-    
-    // load the visible page and the page on either side of it (to avoid flashes when the user starts scrolling)
-    [self loadScrollViewWithPage:page - 1];
-    [self loadScrollViewWithPage:page];
-    [self loadScrollViewWithPage:page + 1];
-    
-	// update the scroll view to the appropriate page
-    CGRect bounds = self.scrollView.bounds;
-    bounds.origin.x = CGRectGetWidth(bounds) * page;
-    bounds.origin.y = 0;
-    [self.scrollView scrollRectToVisible:bounds animated:animated];
-}
-
-- (IBAction)changePage:(id)sender
-{
-    [self gotoPage:YES];    // YES = animate
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
 -(IBAction)nextQuestionButton:(id)sender
 {
-    self.score += self.pageControl.currentPage+1;
+    self.score += 1; //TODO the actual score
     
     // remove the uilabel views from the screen
-    for(UIView *view in self.scrollView.subviews) {
+    for(UIView *view in self.collectionView.subviews) {
         [view removeFromSuperview];
     }
     
@@ -239,6 +117,30 @@
         // increment the score
         [self displayQuestion:[self.questions indexOfObject:self.currentQuestion]+1];
     }
+}
+
+#pragma mark - collection view data source methods
+
+-(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+{
+    return self.currentOptions.count;
+}
+
+-(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Cell" forIndexPath:indexPath];
+    cell.backgroundColor = [UIColor greenColor];
+    
+    PFObject *option = [self.currentOptions objectAtIndex:indexPath.item];
+    PFFile *fileImage = option[@"image"];
+    
+    [fileImage getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+        UIImageView *imgView = [[UIImageView alloc] initWithImage:[UIImage imageWithData:data]];
+        //imgView.contentMode = UIViewContentModeScaleAspectFit;
+        imgView.contentMode = UIViewContentModeCenter;
+        [cell addSubview:imgView];
+    }];
+    return cell;
 }
 
 @end
