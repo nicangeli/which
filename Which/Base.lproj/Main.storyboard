@@ -64,7 +64,7 @@
                             <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="i4E-ze-YAe">
                                 <rect key="frame" x="0.0" y="142" width="320" height="338"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" red="0.80146628660784702" green="0.93623927317833877" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="320" id="lil-l4-44a"/>
@@ -73,11 +73,11 @@
                                     <size key="itemSize" width="138" height="122"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                    <inset key="sectionInset" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="MIK-FV-r2u">
-                                        <rect key="frame" x="0.0" y="0.0" width="138" height="122"/>
+                                        <rect key="frame" x="10" y="0.0" width="138" height="122"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="138" height="122"/>
@@ -93,6 +93,7 @@
                             </collectionView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstAttribute="centerX" secondItem="4tH-2M-tAz" secondAttribute="centerX" id="COF-H5-WbV"/>
                             <constraint firstAttribute="trailing" secondItem="EG4-Ty-6Ax" secondAttribute="trailing" constant="11" id="KpL-79-1q5"/>
@@ -104,6 +105,10 @@
                             <constraint firstItem="i4E-ze-YAe" firstAttribute="top" secondItem="EG4-Ty-6Ax" secondAttribute="bottom" constant="8" id="gJi-UC-IZR"/>
                             <constraint firstAttribute="trailing" secondItem="i4E-ze-YAe" secondAttribute="trailing" id="kq6-BI-eka"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="S7w-5R-g3m" appends="YES" id="c7W-KR-295"/>
+                            <outletCollection property="gestureRecognizers" destination="wOC-aH-EMk" appends="YES" id="bSC-gS-Wu6"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" id="PdC-O9-nuf"/>
                     <connections>
@@ -113,6 +118,18 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PD3-QZ-eaL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="S7w-5R-g3m">
+                    <connections>
+                        <action selector="handleLongPress:" destination="V1D-Ah-NJR" id="9Gi-Of-wVN"/>
+                        <outlet property="delegate" destination="V1D-Ah-NJR" id="lXQ-1E-AAU"/>
+                    </connections>
+                </pongPressGestureRecognizer>
+                <tapGestureRecognizer id="wOC-aH-EMk">
+                    <connections>
+                        <action selector="handleTap:" destination="V1D-Ah-NJR" id="wNw-AM-oYh"/>
+                        <outlet property="delegate" destination="V1D-Ah-NJR" id="NGd-0e-rNY"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1052" y="69"/>
         </scene>

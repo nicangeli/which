@@ -136,11 +136,54 @@
     
     [fileImage getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
         UIImageView *imgView = [[UIImageView alloc] initWithImage:[UIImage imageWithData:data]];
-        //imgView.contentMode = UIViewContentModeScaleAspectFit;
-        imgView.contentMode = UIViewContentModeCenter;
+        imgView.contentMode = UIViewContentModeScaleAspectFit;
+        imgView.tag = 1001;
         [cell addSubview:imgView];
     }];
     return cell;
+}
+
+#pragma mark - long press gesture recognizer
+
+-(IBAction)handleLongPress:(UILongPressGestureRecognizer *)gestureRecognizer
+{
+    
+    if(gestureRecognizer.state == UIGestureRecognizerStateBegan) {
+        CGPoint point = [gestureRecognizer locationInView:self.collectionView];
+        NSIndexPath *indexPath = [self.collectionView indexPathForItemAtPoint:point];
+        
+        if(indexPath != nil) {
+            UICollectionViewCell *cell = [self.collectionView cellForItemAtIndexPath:indexPath];
+            UIImageView *v = (UIImageView *)[cell viewWithTag:1001];
+            UIImageView *pop = [[UIImageView alloc] initWithFrame:CGRectMake(20, 100, self.view.bounds.size.width - 40, self.view.bounds.size.height - 300)];
+            pop.image = v.image;
+            pop.tag = 1002;
+            pop.contentMode = UIViewContentModeScaleAspectFit;
+            [self.view addSubview:pop];
+        }
+    }
+    
+    if(gestureRecognizer.state == UIGestureRecognizerStateEnded) {
+        UIView *v = [self.view viewWithTag:1002];
+        [v removeFromSuperview];
+    }
+}
+
+#pragma mark - handle tap gesture recognizer
+
+-(IBAction)handleTap:(UITapGestureRecognizer*)gestureRecognizer
+{
+    if(gestureRecognizer.state == UIGestureRecognizerStateBegan) {
+        
+        CGPoint point = [gestureRecognizer locationInView:self.collectionView];
+        NSIndexPath *indexPath = [self.collectionView indexPathForItemAtPoint:point];
+        
+        if(indexPath != nil) {
+            UICollectionViewCell *cell = [self.collectionView cellForItemAtIndexPath:indexPath];
+            UILabel *checkmark = [[UILabel alloc] init];
+        }
+        
+    }
 }
 
 @end
