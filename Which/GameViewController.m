@@ -8,6 +8,7 @@
 
 #import "GameViewController.h"
 #import "ResultsViewController.h"
+#import "CustomCollectionViewCell.h"
 
 @interface GameViewController ()
 
@@ -126,10 +127,12 @@
     return self.currentOptions.count;
 }
 
--(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+-(CustomCollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Cell" forIndexPath:indexPath];
-    cell.backgroundColor = [UIColor greenColor];
+    CustomCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Cell" forIndexPath:indexPath];
+    [cell.layer setBorderColor:[[UIColor blackColor] CGColor]];
+    [cell.layer setBorderWidth:2.0];
+    [cell.layer setCornerRadius:7.0];
     
     PFObject *option = [self.currentOptions objectAtIndex:indexPath.item];
     PFFile *fileImage = option[@"image"];
@@ -173,16 +176,51 @@
 
 -(IBAction)handleTap:(UITapGestureRecognizer*)gestureRecognizer
 {
-    if(gestureRecognizer.state == UIGestureRecognizerStateBegan) {
+    CGPoint point = [gestureRecognizer locationInView:self.collectionView];
+    NSIndexPath *indexPath = [self.collectionView indexPathForItemAtPoint:point];
         
-        CGPoint point = [gestureRecognizer locationInView:self.collectionView];
-        NSIndexPath *indexPath = [self.collectionView indexPathForItemAtPoint:point];
+    if(indexPath != nil) {
+        CustomCollectionViewCell *cell = (CustomCollectionViewCell *)[self.collectionView cellForItemAtIndexPath:indexPath];
+        // do we want to display the check mark?
+        // remove all checkmarks
+        [self removeCheckmarksFromView:self.collectionView];
+        // set all checked properties to NO
+        for(CustomCollectionViewCell *c in self.collectionView.subviews) {
+            if([c isKindOfClass:[CustomCollectionViewCell class]]) {
+                c.checked = NO;
+            }
+        }
+        // for just the clicked cell, show the checkmark
+        cell.checked = YES;
+        UIImage *check = [UIImage imageNamed:@"check"];
+        UIImageView *view = [[UIImageView alloc] initWithImage:check];
+        view.frame = CGRectMake(cell.frame.size.width-50, 0, 50, 50);
+        view.alpha = 0.5;
+        view.tag = 333;
+            
+        [cell addSubview:view];
+    }
+}
+
+#pragma  mark - misc functions
+
+- (void)removeCheckmarksFromView:(UIView *)view {
+    
+    // Get the subviews of the view
+    NSArray *subviews = [view subviews];
+    
+    // Return if there are no subviews
+    if ([subviews count] == 0) return;
+    
+    for (UIView *subview in subviews) {
         
-        if(indexPath != nil) {
-            UICollectionViewCell *cell = [self.collectionView cellForItemAtIndexPath:indexPath];
-            UILabel *checkmark = [[UILabel alloc] init];
+        // Do what you want to do with the subview
+        if(subview.tag == 333) {
+            [subview removeFromSuperview];
         }
         
+        // List the subviews of subview
+        [self removeCheckmarksFromView:subview];
     }
 }
 
