@@ -26,6 +26,7 @@
 
 @property (strong, nonatomic) NSArray *questions; //holds all the questions for the entire game
 @property (strong, nonatomic) PFObject *currentQuestion;
+@property (nonatomic, strong) PFObject *selectedOption;
 
 @property (nonatomic) NSInteger score;
 
@@ -84,6 +85,9 @@
     self.currentQuestion = self.questions[questionNumber];
     self.currentQuestionTitleLabel.text = self.currentQuestion[@"title"]; // change the question title
     
+    [self removeViewsWithTag:1001 fromView:self.view];
+
+    
     PFRelation *questionToOptions = [self.currentQuestion relationForKey:@"options"];
     PFQuery *query = [questionToOptions query];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
@@ -94,6 +98,8 @@
         }
         self.currentOptionsLabels = optionLabels;
         [self.collectionView reloadData];
+        NSArray *indexPaths = [NSArray arrayWithObjects:[NSIndexPath indexPathForItem:0 inSection:0], [NSIndexPath indexPathForItem:1 inSection:0],[NSIndexPath indexPathForItem:2 inSection:0], nil];
+        [self.collectionView reloadItemsAtIndexPaths:indexPaths];
         
     }];
 }
@@ -101,12 +107,16 @@
 
 -(IBAction)nextQuestionButton:(id)sender
 {
-    self.score += 1; //TODO the actual score
+    self.score += [self.selectedOption[@"score"] integerValue];
     
-    // remove the uilabel views from the screen
-    for(UIView *view in self.collectionView.subviews) {
+    // remove the cells views from the collection view ready for replacement
+   /* for(UIView *view in self.collectionView.subviews) {
         [view removeFromSuperview];
     }
+    */
+    //NSArray *paths = [self.collectionView indexPathsForVisibleItems];
+    //[self.collectionView deleteItemsAtIndexPaths:paths]
+    //[self.collectionView deleteSections:[NSIndexSet indexSetWithIndex:1]];
     
     // are we at the end of the game?
     if(([self.questions indexOfObject:self.currentQuestion] + 1) == self.questions.count) {
@@ -152,10 +162,10 @@
 
 -(IBAction)handleLongPress:(UILongPressGestureRecognizer *)gestureRecognizer
 {
+    CGPoint point = [gestureRecognizer locationInView:self.collectionView];
+    NSIndexPath *indexPath = [self.collectionView indexPathForItemAtPoint:point];
     
     if(gestureRecognizer.state == UIGestureRecognizerStateBegan) {
-        CGPoint point = [gestureRecognizer locationInView:self.collectionView];
-        NSIndexPath *indexPath = [self.collectionView indexPathForItemAtPoint:point];
         
         if(indexPath != nil) {
             UICollectionViewCell *cell = [self.collectionView cellForItemAtIndexPath:indexPath];
@@ -169,8 +179,9 @@
     }
     
     if(gestureRecognizer.state == UIGestureRecognizerStateEnded) {
-        UIView *v = [self.view viewWithTag:1002];
-        [v removeFromSuperview];
+        //UIView *v = [self.view viewWithTag:1002]; // remove the pop up image view
+        //[v removeFromSuperview];
+        [self removeViewsWithTag:1002 fromView:self.view];
     }
 }
 
@@ -180,8 +191,15 @@
 {
     CGPoint point = [gestureRecognizer locationInView:self.collectionView];
     NSIndexPath *indexPath = [self.collectionView indexPathForItemAtPoint:point];
+
         
     if(indexPath != nil) {
+        
+        // track the curretn tapped item
+        PFObject *selectedObject = self.currentOptions[indexPath.item];
+        self.selectedOption = selectedObject;
+        
+        
         CustomCollectionViewCell *cell = (CustomCollectionViewCell *)[self.collectionView cellForItemAtIndexPath:indexPath];
         // do we want to display the check mark?
         
@@ -189,7 +207,8 @@
         self.nextButton.hidden = NO;
         
         // remove all checkmarks
-        [self removeCheckmarksFromView:self.collectionView];
+        [self removeViewsWithTag:333 fromView:self.collectionView];
+        
         // set all checked properties to NO
         for(CustomCollectionViewCell *c in self.collectionView.subviews) {
             if([c isKindOfClass:[CustomCollectionViewCell class]]) {
@@ -210,8 +229,7 @@
 
 #pragma  mark - misc functions
 
-- (void)removeCheckmarksFromView:(UIView *)view {
-    
+-(void)removeViewsWithTag:(NSInteger )tag fromView:(UIView *)view {
     // Get the subviews of the view
     NSArray *subviews = [view subviews];
     
@@ -221,12 +239,12 @@
     for (UIView *subview in subviews) {
         
         // Do what you want to do with the subview
-        if(subview.tag == 333) {
+        if(subview.tag == tag) {
             [subview removeFromSuperview];
         }
         
         // List the subviews of subview
-        [self removeCheckmarksFromView:subview];
+        [self removeViewsWithTag:tag fromView:subview];
     }
 }
 
