@@ -54,6 +54,8 @@
     [self.currentGameTitleLabel setFont:[UIFont fontWithName:@"BlendaScript" size:20.0]];
     [self.currentQuestionTitleLabel setFont:[UIFont fontWithName:@"Raleway" size:20.0]];
     self.currentQuestionTitleLabel.backgroundColor = [UIColor colorWithRed:234.0/255 green:234.0/255 blue:234.0/255 alpha:0.5];
+    [self.currentQuestionTitleLabel.layer setBorderWidth:5.0];
+    [self.currentQuestionTitleLabel.layer setBorderColor:[[UIColor colorWithRed:234.0/255 green:234.0/255 blue:234.0/255 alpha:0.5] CGColor]];
     self.currentGameTitleLabel.text = self.game[@"title"];
     self.currentGameTitleLabel.textColor = [UIColor colorWithRed:46.0/255 green:204.0/255 blue:113.0/255 alpha:1.0];
     
@@ -85,6 +87,7 @@
     self.currentQuestion = self.questions[questionNumber];
     self.currentQuestionTitleLabel.text = self.currentQuestion[@"title"]; // change the question title
     
+    self.nextButton.hidden = YES;
     [self removeViewsWithTag:1001 fromView:self.view];
 
     
@@ -108,15 +111,6 @@
 -(IBAction)nextQuestionButton:(id)sender
 {
     self.score += [self.selectedOption[@"score"] integerValue];
-    
-    // remove the cells views from the collection view ready for replacement
-   /* for(UIView *view in self.collectionView.subviews) {
-        [view removeFromSuperview];
-    }
-    */
-    //NSArray *paths = [self.collectionView indexPathsForVisibleItems];
-    //[self.collectionView deleteItemsAtIndexPaths:paths]
-    //[self.collectionView deleteSections:[NSIndexSet indexSetWithIndex:1]];
     
     // are we at the end of the game?
     if(([self.questions indexOfObject:self.currentQuestion] + 1) == self.questions.count) {
@@ -144,7 +138,6 @@
     CustomCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Cell" forIndexPath:indexPath];
     [cell.layer setBorderColor:[[UIColor colorWithRed:234.0/255 green:234.0/255 blue:234.0/255 alpha:1.0] CGColor]];
     [cell.layer setBorderWidth:6.0];
-    [cell.layer setCornerRadius:0.0];
     
     PFObject *option = [self.currentOptions objectAtIndex:indexPath.item];
     PFFile *fileImage = option[@"image"];
@@ -179,8 +172,6 @@
     }
     
     if(gestureRecognizer.state == UIGestureRecognizerStateEnded) {
-        //UIView *v = [self.view viewWithTag:1002]; // remove the pop up image view
-        //[v removeFromSuperview];
         [self removeViewsWithTag:1002 fromView:self.view];
     }
 }
