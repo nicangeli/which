@@ -91,6 +91,7 @@
     [self removeViewsWithTag:1001 fromView:self.view];
 
     
+    // got the questions already, now get the options
     PFRelation *questionToOptions = [self.currentQuestion relationForKey:@"options"];
     PFQuery *query = [questionToOptions query];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
@@ -101,8 +102,8 @@
         }
         self.currentOptionsLabels = optionLabels;
         [self.collectionView reloadData];
-        NSArray *indexPaths = [NSArray arrayWithObjects:[NSIndexPath indexPathForItem:0 inSection:0], [NSIndexPath indexPathForItem:1 inSection:0],[NSIndexPath indexPathForItem:2 inSection:0], nil];
-        [self.collectionView reloadItemsAtIndexPaths:indexPaths];
+        //NSArray *indexPaths = [NSArray arrayWithObjects:[NSIndexPath indexPathForItem:0 inSection:0], [NSIndexPath indexPathForItem:1 inSection:0],[NSIndexPath indexPathForItem:2 inSection:0], nil];
+        //[self.collectionView reloadItemsAtIndexPaths:indexPaths];
         
     }];
 }
