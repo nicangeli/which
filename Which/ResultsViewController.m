@@ -51,6 +51,11 @@
     // set up the segue to the home screen when back is clicked
     self.navigationController.topViewController.navigationItem.leftBarButtonItem =  [[UIBarButtonItem alloc] initWithTitle:@"   Home" style:UIBarButtonSystemItemEdit target:self action:@selector(moveHome)];
     
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
     
     PFRelation *relation = [self.game relationForKey:@"answers"];
     PFQuery *query = [relation query];
@@ -66,7 +71,7 @@
             self.answerImage.contentMode = UIViewContentModeScaleAspectFit;
             self.answerImage.image = [UIImage imageWithData:data];
         }];
-
+        
         
     }];
 }
