@@ -161,7 +161,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PD3-QZ-eaL" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="S7w-5R-g3m">
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.10000000000000003" id="S7w-5R-g3m">
                     <connections>
                         <action selector="handleLongPress:" destination="V1D-Ah-NJR" id="9Gi-Of-wVN"/>
                         <outlet property="delegate" destination="V1D-Ah-NJR" id="lXQ-1E-AAU"/>

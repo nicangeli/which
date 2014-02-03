@@ -102,8 +102,6 @@
         }
         self.currentOptionsLabels = optionLabels;
         [self.collectionView reloadData];
-        //NSArray *indexPaths = [NSArray arrayWithObjects:[NSIndexPath indexPathForItem:0 inSection:0], [NSIndexPath indexPathForItem:1 inSection:0],[NSIndexPath indexPathForItem:2 inSection:0], nil];
-        //[self.collectionView reloadItemsAtIndexPaths:indexPaths];
         
     }];
 }
@@ -146,7 +144,8 @@
         
         [fileImage getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
             UIImageView *imgView = [[UIImageView alloc] initWithImage:[UIImage imageWithData:data]];
-            imgView.contentMode = UIViewContentModeScaleAspectFit;
+            imgView.contentMode = UIViewContentModeRedraw;
+            //imgView.contentMode = UIViewContentModeScaleToFill;
             imgView.tag = 1001;
             [cell addSubview:imgView];
         }];
