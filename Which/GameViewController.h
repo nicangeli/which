@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface GameViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate>
+@interface GameViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
 
 @property (nonatomic, strong) PFObject *game;
 @property (nonatomic, strong) IBOutlet UIButton *nextButton;

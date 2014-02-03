@@ -136,20 +136,45 @@
 
 -(CustomCollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    CustomCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Cell" forIndexPath:indexPath];
-    [cell.layer setBorderColor:[[UIColor colorWithRed:234.0/255 green:234.0/255 blue:234.0/255 alpha:1.0] CGColor]];
-    [cell.layer setBorderWidth:6.0];
-    
-    PFObject *option = [self.currentOptions objectAtIndex:indexPath.item];
-    PFFile *fileImage = option[@"image"];
-    
-    [fileImage getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
-        UIImageView *imgView = [[UIImageView alloc] initWithImage:[UIImage imageWithData:data]];
-        imgView.contentMode = UIViewContentModeScaleAspectFit;
-        imgView.tag = 1001;
-        [cell addSubview:imgView];
-    }];
-    return cell;
+    if([self.currentQuestion[@"type"] isEqualToString:@"image"]) {
+        CustomCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ImageCell" forIndexPath:indexPath];
+        [cell.layer setBorderColor:[[UIColor colorWithRed:234.0/255 green:234.0/255 blue:234.0/255 alpha:1.0] CGColor]];
+        [cell.layer setBorderWidth:6.0];
+        
+        PFObject *option = [self.currentOptions objectAtIndex:indexPath.item];
+        PFFile *fileImage = option[@"image"];
+        
+        [fileImage getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+            UIImageView *imgView = [[UIImageView alloc] initWithImage:[UIImage imageWithData:data]];
+            imgView.contentMode = UIViewContentModeScaleAspectFit;
+            imgView.tag = 1001;
+            [cell addSubview:imgView];
+        }];
+        return cell;
+    } else {
+        CustomCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"TextCell" forIndexPath:indexPath];
+        cell.backgroundColor = [UIColor redColor];
+        PFObject *option = [self.currentOptions objectAtIndex:indexPath.item];
+        //cell.frame = CGRectMake(0, 30 * indexPath.item, 300, 30);
+        cell.backgroundColor =[UIColor colorWithRed:46.0/255 green:204.0/255 blue:113.0/255 alpha:1.0];
+        cell.titleLabel.text = option[@"title"];
+        cell.titleLabel.font = [UIFont fontWithName:@"Raleway" size:18.0];
+        cell.titleLabel.textColor = [UIColor whiteColor];
+        //[cell.contentView addSubview:optionLabel];
+        return cell;
+    }
+    return nil;
+}
+
+#pragma mark - collection view layoyut methods
+
+-(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    if([self.currentQuestion[@"type"] isEqualToString:@"image"]) {
+        return CGSizeMake(145, 126);
+    } else {
+        return CGSizeMake(300, 50);
+    }
 }
 
 #pragma mark - long press gesture recognizer

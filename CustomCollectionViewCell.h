@@ -10,6 +10,7 @@
 
 @interface CustomCollectionViewCell : UICollectionViewCell
 
+@property (nonatomic, strong) IBOutlet UILabel *titleLabel;
 @property (nonatomic) BOOL checked;
 
 @end
