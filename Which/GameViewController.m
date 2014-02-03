@@ -52,6 +52,7 @@
     
     [self.currentGameTitleLabel setFont:[UIFont fontWithName:@"BlendaScript" size:20.0]];
     [self.currentQuestionTitleLabel setFont:[UIFont fontWithName:@"Raleway" size:20.0]];
+    self.currentQuestionTitleLabel.backgroundColor = [UIColor colorWithRed:234.0/255 green:234.0/255 blue:234.0/255 alpha:0.5];
     self.currentGameTitleLabel.text = self.game[@"title"];
     self.currentGameTitleLabel.textColor = [UIColor colorWithRed:46.0/255 green:204.0/255 blue:113.0/255 alpha:1.0];
     
@@ -73,6 +74,7 @@
     UIImage *image = [UIImage imageNamed:@"navItem.png"];
     UIImageView *imageView = [[UIImageView alloc] initWithImage: image];
     self.navigationItem.titleView = imageView;
+    self.nextButton.hidden = YES;
 }
 
 
@@ -130,9 +132,9 @@
 -(CustomCollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     CustomCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Cell" forIndexPath:indexPath];
-    [cell.layer setBorderColor:[[UIColor blackColor] CGColor]];
-    [cell.layer setBorderWidth:2.0];
-    [cell.layer setCornerRadius:7.0];
+    [cell.layer setBorderColor:[[UIColor colorWithRed:234.0/255 green:234.0/255 blue:234.0/255 alpha:1.0] CGColor]];
+    [cell.layer setBorderWidth:6.0];
+    [cell.layer setCornerRadius:0.0];
     
     PFObject *option = [self.currentOptions objectAtIndex:indexPath.item];
     PFFile *fileImage = option[@"image"];
@@ -182,6 +184,10 @@
     if(indexPath != nil) {
         CustomCollectionViewCell *cell = (CustomCollectionViewCell *)[self.collectionView cellForItemAtIndexPath:indexPath];
         // do we want to display the check mark?
+        
+        // display the next button
+        self.nextButton.hidden = NO;
+        
         // remove all checkmarks
         [self removeCheckmarksFromView:self.collectionView];
         // set all checked properties to NO

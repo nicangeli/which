@@ -62,7 +62,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="i4E-ze-YAe">
-                                <rect key="frame" x="0.0" y="142" width="320" height="338"/>
+                                <rect key="frame" x="0.0" y="142" width="320" height="279"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -91,15 +91,32 @@
                                     <outlet property="delegate" destination="V1D-Ah-NJR" id="VaE-zi-4zV"/>
                                 </connections>
                             </collectionView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wcm-OC-FAd">
+                                <rect key="frame" x="11" y="435" width="289" height="36"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.18039215689999999" green="0.80392156859999997" blue="0.4431372549" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="289" id="MqM-Lh-uyX"/>
+                                    <constraint firstAttribute="height" constant="36" id="xZn-6y-h9G"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Next">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstAttribute="centerX" secondItem="4tH-2M-tAz" secondAttribute="centerX" id="COF-H5-WbV"/>
+                            <constraint firstItem="wcm-OC-FAd" firstAttribute="top" secondItem="i4E-ze-YAe" secondAttribute="bottom" constant="14" id="FuH-OG-cH3"/>
                             <constraint firstAttribute="trailing" secondItem="EG4-Ty-6Ax" secondAttribute="trailing" constant="11" id="KpL-79-1q5"/>
-                            <constraint firstItem="YRC-Kl-EXe" firstAttribute="top" secondItem="i4E-ze-YAe" secondAttribute="bottom" id="Pqx-c3-eq9"/>
+                            <constraint firstAttribute="trailing" secondItem="wcm-OC-FAd" secondAttribute="trailing" constant="20" id="MGa-aH-kP4"/>
                             <constraint firstItem="EG4-Ty-6Ax" firstAttribute="top" secondItem="4tH-2M-tAz" secondAttribute="bottom" constant="6" id="R47-pu-7JQ"/>
+                            <constraint firstItem="wcm-OC-FAd" firstAttribute="leading" secondItem="oOh-OU-BPp" secondAttribute="leading" constant="11" id="SlX-qs-zAM"/>
                             <constraint firstItem="EG4-Ty-6Ax" firstAttribute="top" secondItem="4tH-2M-tAz" secondAttribute="bottom" constant="6" id="UD4-hf-QYg"/>
+                            <constraint firstItem="YRC-Kl-EXe" firstAttribute="top" secondItem="wcm-OC-FAd" secondAttribute="bottom" constant="9" id="aGm-O4-DW8"/>
                             <constraint firstItem="EG4-Ty-6Ax" firstAttribute="leading" secondItem="oOh-OU-BPp" secondAttribute="leading" constant="11" id="bO0-bo-yeS"/>
                             <constraint firstItem="i4E-ze-YAe" firstAttribute="leading" secondItem="oOh-OU-BPp" secondAttribute="leading" id="fNV-CY-xvS"/>
                             <constraint firstItem="i4E-ze-YAe" firstAttribute="top" secondItem="EG4-Ty-6Ax" secondAttribute="bottom" constant="8" id="gJi-UC-IZR"/>
@@ -115,6 +132,7 @@
                         <outlet property="collectionView" destination="i4E-ze-YAe" id="VrB-AL-W2Y"/>
                         <outlet property="currentGameTitleLabel" destination="4tH-2M-tAz" id="rCT-1x-4F1"/>
                         <outlet property="currentQuestionTitleLabel" destination="EG4-Ty-6Ax" id="ebD-nK-Vuw"/>
+                        <outlet property="nextButton" destination="wcm-OC-FAd" id="Sy5-IO-yke"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PD3-QZ-eaL" userLabel="First Responder" sceneMemberID="firstResponder"/>

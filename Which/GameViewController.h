@@ -11,6 +11,7 @@
 @interface GameViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate>
 
 @property (nonatomic, strong) PFObject *game;
+@property (nonatomic, strong) IBOutlet UIButton *nextButton;
 
 -(IBAction)nextQuestionButton:(id)sender;
 
