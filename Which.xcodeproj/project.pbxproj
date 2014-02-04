@@ -29,7 +29,8 @@
 		89DF4F5B189C500300ECC34C /* navItem@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 89DF4F59189C500300ECC34C /* navItem@2x.png */; };
 		89DF4F5D189C516600ECC34C /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89DF4F5C189C516600ECC34C /* Social.framework */; };
 		89DF4F60189EC26F00ECC34C /* CustomCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 89DF4F5F189EC26F00ECC34C /* CustomCollectionViewCell.m */; };
-		89DF4F62189ECE2D00ECC34C /* check.png in Resources */ = {isa = PBXBuildFile; fileRef = 89DF4F61189ECE2D00ECC34C /* check.png */; };
+		89DF4F7118A067B500ECC34C /* check.png in Resources */ = {isa = PBXBuildFile; fileRef = 89DF4F6F18A067B500ECC34C /* check.png */; };
+		89DF4F7218A067B500ECC34C /* check@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 89DF4F7018A067B500ECC34C /* check@2x.png */; };
 		BC889493A33F444FBFDB6EC0 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C40464594854E848B9078C8 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -75,7 +76,8 @@
 		89DF4F5C189C516600ECC34C /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		89DF4F5E189EC26F00ECC34C /* CustomCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomCollectionViewCell.h; sourceTree = SOURCE_ROOT; };
 		89DF4F5F189EC26F00ECC34C /* CustomCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomCollectionViewCell.m; sourceTree = SOURCE_ROOT; };
-		89DF4F61189ECE2D00ECC34C /* check.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = check.png; path = "../../../Dropbox/which?/check.png"; sourceTree = "<group>"; };
+		89DF4F6F18A067B500ECC34C /* check.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = check.png; sourceTree = "<group>"; };
+		89DF4F7018A067B500ECC34C /* check@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "check@2x.png"; sourceTree = "<group>"; };
 		FCAE3B2B859742118A5AB8CA /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -193,8 +195,9 @@
 		89C2B37E1896A35C00B51FCB /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				89DF4F61189ECE2D00ECC34C /* check.png */,
 				89DF4F58189C500300ECC34C /* navItem.png */,
+				89DF4F6F18A067B500ECC34C /* check.png */,
+				89DF4F7018A067B500ECC34C /* check@2x.png */,
 				89DF4F59189C500300ECC34C /* navItem@2x.png */,
 			);
 			name = Images;
@@ -280,7 +283,8 @@
 			files = (
 				8982CB2118969CDD00D059B5 /* Images.xcassets in Resources */,
 				8982CB1318969CDD00D059B5 /* InfoPlist.strings in Resources */,
-				89DF4F62189ECE2D00ECC34C /* check.png in Resources */,
+				89DF4F7218A067B500ECC34C /* check@2x.png in Resources */,
+				89DF4F7118A067B500ECC34C /* check.png in Resources */,
 				89DF4F5B189C500300ECC34C /* navItem@2x.png in Resources */,
 				8982CB1C18969CDD00D059B5 /* Main.storyboard in Resources */,
 				89C2B3801896A59F00B51FCB /* Blenda Script.otf in Resources */,

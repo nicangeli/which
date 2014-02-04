@@ -156,7 +156,7 @@
         cell.backgroundColor = [UIColor redColor];
         PFObject *option = [self.currentOptions objectAtIndex:indexPath.item];
         //cell.frame = CGRectMake(0, 30 * indexPath.item, 300, 30);
-        cell.backgroundColor =[UIColor colorWithRed:46.0/255 green:204.0/255 blue:113.0/255 alpha:1.0];
+        cell.backgroundColor =[UIColor colorWithRed:255.0/255 green:99.0/255 blue:57.0/255 alpha:1.0];
         cell.titleLabel.text = option[@"title"];
         cell.titleLabel.font = [UIFont fontWithName:@"Raleway" size:18.0];
         cell.titleLabel.textColor = [UIColor whiteColor];
@@ -237,7 +237,7 @@
         UIImage *check = [UIImage imageNamed:@"check"];
         UIImageView *view = [[UIImageView alloc] initWithImage:check];
         view.frame = CGRectMake(cell.frame.size.width-50, 0, 50, 50);
-        view.alpha = 0.5;
+        view.alpha = 1;
         view.tag = 333;
             
         [cell addSubview:view];
