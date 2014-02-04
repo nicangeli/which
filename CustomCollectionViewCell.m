@@ -24,6 +24,7 @@
 {
     self = [super initWithCoder:aDecoder];
     if(self) {
+        NSLog(@"Initializing");
         self.checked = NO;
     }
     return self;

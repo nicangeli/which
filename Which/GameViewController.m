@@ -47,6 +47,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.score = 0;
     self.currentOptions = [NSMutableArray array];
     self.currentOptionsLabels = [NSMutableArray array];
     
@@ -77,7 +78,6 @@
     UIImageView *imageView = [[UIImageView alloc] initWithImage: image];
     self.navigationItem.titleView = imageView;
     self.nextButton.hidden = YES;
-    self.score = 0;
 }
 
 
@@ -88,8 +88,7 @@
     self.currentQuestionTitleLabel.text = self.currentQuestion[@"title"]; // change the question title
     
     self.nextButton.hidden = YES;
-    [self removeViewsWithTag:1001 fromView:self.collectionView];
-    [self removeViewsWithTag:333 fromView:self.collectionView];
+    [self removeViewsWithTag:1001 fromView:self.view];
 
     
     // got the questions already, now get the options
